@@ -216,6 +216,7 @@ type GoFlagsConfig struct {
 	ModFile       string
 	ModCacheRW    bool
 	MSan          bool
+	ASan          bool
 	PkgDir        string
 	Tags          string
 	TrimPath      bool
@@ -559,7 +560,7 @@ var GoBuildFlags = GinkgoFlags{
 	{KeyPath: "Go.GCFlags", Name: "gcflags", UsageArgument: "'[pattern=]arg list'", SectionKey: "go-build",
 		Usage: "arguments to pass on each go tool compile invocation."},
 	{KeyPath: "Go.InstallSuffix", Name: "installsuffix", SectionKey: "go-build",
-		Usage: "a suffix to use in the name of the package installation directory, in order to keep output separate from default builds. If using the -race flag, the install suffix is automatically set to raceor, if set explicitly, has _race appended to it. Likewise for the -msan flag.  Using a -buildmode option that requires non-default compile flags has a similar effect."},
+		Usage: "a suffix to use in the name of the package installation directory, in order to keep output separate from default builds. If using the -race flag, the install suffix is automatically set to race or, if set explicitly, has _race appended to it. Likewise for the -msan and -asan flags.  Using a -buildmode option that requires non-default compile flags has a similar effect."},
 	{KeyPath: "Go.LDFlags", Name: "ldflags", UsageArgument: "'[pattern=]arg list'", SectionKey: "go-build",
 		Usage: "arguments to pass on each go tool link invocation."},
 	{KeyPath: "Go.LinkShared", Name: "linkshared", SectionKey: "go-build",
@@ -572,6 +573,8 @@ var GoBuildFlags = GinkgoFlags{
 		Usage: `in module aware mode, read (and possibly write) an alternate go.mod file instead of the one in the module root directory. A file named go.mod must still be present in order to determine the module root directory, but it is not accessed. When -modfile is specified, an alternate go.sum file is also used: its path is derived from the -modfile flag by trimming the ".mod" extension and appending ".sum".`},
 	{KeyPath: "Go.MSan", Name: "msan", SectionKey: "go-build",
 		Usage: "enable interoperation with memory sanitizer. Supported only on linux/amd64, linux/arm64 and only with Clang/LLVM as the host C compiler. On linux/arm64, pie build mode will be used."},
+	{KeyPath: "Go.ASan", Name: "asan", SectionKey: "go-build",
+		Usage: "enable interoperation with address sanitizer. Supported only on linux/arm64, linux/amd64, linux/ppc64le and only with Clang/LLVM as the host C compiler."},
 	{KeyPath: "Go.N", Name: "n", SectionKey: "go-build",
 		Usage: "print the commands but do not run them."},
 	{KeyPath: "Go.PkgDir", Name: "pkgdir", UsageArgument: "dir", SectionKey: "go-build",
